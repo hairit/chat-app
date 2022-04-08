@@ -44,7 +44,6 @@ export function Chat({route}) {
         <Button title='Back' onPress={()=>navigation.navigate('Home' , user)}></Button>
     </View>
     <GiftedChat
-    //  bottomOffset={1}
       messages={messages}
       showAvatarForEveryMessage={true}
       onSend={messages => onSend(messages)}
