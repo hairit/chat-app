@@ -1,9 +1,11 @@
 import {useState , useEffect} from 'react';
-import { StyleSheet, Text, View , Image ,Pressable ,FlatList ,TextInput , Button } from 'react-native';
+import { StyleSheet, Text, View , Image ,Pressable ,FlatList ,TextInput , Button, Dimensions } from 'react-native';
 import nullAvatar from '../Images/null-avatar.png';
 import { db } from '../Firebase';
 import { collection, getDocs , query , where , addDoc , onSnapshot, getDoc} from "firebase/firestore";
 import Friend from '../Components/Friend';
+import Constants from 'expo-constants';
+import Icon from 'react-native-vector-icons/Feather';
 
 
 export default function Home({navigation,route}){
@@ -16,6 +18,7 @@ export default function Home({navigation,route}){
   const usersRef = collection(db,"users");
   const messagesRef = collection(db, "messages");
   const user = route.params;
+  
 
 
   useEffect(async () => {
@@ -99,11 +102,11 @@ export default function Home({navigation,route}){
                     <Image style={styles.avatar} resizeMode='center' source={nullAvatar} />
                     <Text style={styles.nameUser}>{user.name + '(' +user._id + ')'}</Text>
                 </View>
-                <Pressable style={styles.logOut} onPress={()=>navigation.navigate('Login')}><Text>Thoát</Text></Pressable>
+                <Icon style={styles.logOut} name='log-out' size={35} onPress={()=>navigation.navigate('Login')}></Icon>
           </View>
           <View style={styles.search}>
               <TextInput style={styles.inputSearch} placeholder='Tìm bạn bè' onChangeText= {(val) => setSdt(val) }></TextInput>
-              <Button title='Search' onPress={()=>searchFriend()}></Button>
+              <Icon style={styles.iconSearch} size={35} name='search' onPress={()=>searchFriend()}></Icon>
           </View>
           {
             searchUser ? 
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#C9C9C9',
     alignItems: 'center',
-    padding : 30
+    justifyContent: 'center'
   },
   header : {
     flexDirection : 'row',
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
   inputSearch : {
     backgroundColor : '#FFFFFF',
     padding : 7 ,
-    width : '70%',
+    width : '85%',
     borderRadius : 10
   },
   userSeacrh : {
@@ -191,5 +194,16 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     flexDirection : 'row',
     justifyContent : 'space-between',
+  },
+  iconSearch : {
+    height: '100%',
+    alignContent: 'flex-start',
+    color: 'blue',
+
+  },
+  logOut : {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    color: 'red'
   }
 });

@@ -40,9 +40,6 @@ export function Chat({route}) {
   }, [])
   return(
     <>
-    <View style={{paddingTop : 50 , paddingLeft : 20 , alignItems : 'flex-start'}}>
-        <Button title='Back' onPress={()=>navigation.navigate('Home' , user)}></Button>
-    </View>
     <GiftedChat
     //  bottomOffset={1}
       messages={messages}

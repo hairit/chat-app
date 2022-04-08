@@ -41,7 +41,10 @@ export default function Friend(props) {
     <Pressable style={styles.friend} onPress={()=>props.navigation.navigate('Chat', {idRoom : props.idRoom , user : props.user , navigation : props.navigation , messages : messages } )}>
         <Image style={styles.avatarFriend} source={nullAvatar}/>
         <View style={{ justifyContent : 'center' , flex : 1}}>
-            <Text style={{ marginLeft : 7 , fontWeight : "500"}}>{friend ? friend.name + '('+ friend._id + ')' : ''}</Text>
+            <View style={{display:'flex', flexDirection:'row'}}>
+            <Text style={{ marginLeft : 7 , fontWeight : "700" }}>{friend ? friend.name + " " : ''}</Text>
+            <Text style={{fontWeight:"300", fontStyle:"italic"}}>{friend?'('+ friend._id + ')' : ""}</Text>
+            </View>
             {
                 messages.length > 0 ? <Text style={{ marginLeft : 7 , marginTop : 7 , fontSize : 13}}>{messages[0].text}</Text> : null
             }
