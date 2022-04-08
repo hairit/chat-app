@@ -30,7 +30,7 @@ export default function Login({navigation}) {
         </View>
         <View style={styles.form}>
              <View style={styles.inputEmail}>
-                <TextInput style={styles.input} placeholder='Số điện thoại' onChangeText={(value)=>setNumber(value)}   />
+                <TextInput style={styles.input} keyboardType='numeric' placeholder='Số điện thoại' onChangeText={(value)=>{setNumber(value); /[^0-9]/.test(value)?alert('Vui lòng chỉ nhập số!'):" "} }   />
              </View>
              {/* <View style={styles.inputPass}>
                 <Text>Password</Text>

@@ -87,6 +87,7 @@ export default function Home({navigation,route}){
       });
       navigation.navigate('Chat',{ idRoom : newRoom.id , user : user , navigation : navigation})
     }
+    setSearchUser(null);
   }
   const checkMessage =  (idRoom) => {
       var result = false;
@@ -105,12 +106,12 @@ export default function Home({navigation,route}){
                 <Icon style={styles.logOut} name='log-out' size={35} onPress={()=>navigation.navigate('Login')}></Icon>
           </View>
           <View style={styles.search}>
-              <TextInput style={styles.inputSearch} placeholder='Tìm bạn bè' onChangeText= {(val) => setSdt(val) }></TextInput>
+              <TextInput style={styles.inputSearch} keyboardType='numeric' placeholder='Tìm bạn bè' onChangeText= {(val) => {setSdt(val); /[^0-9]/.test(value)?alert('Vui lòng chỉ nhập số!'):" "}  }></TextInput>
               <Icon style={styles.iconSearch} size={35} name='search' onPress={()=>searchFriend()}></Icon>
           </View>
           {
             searchUser ? 
-              <View style={styles.userSeacrh}>
+              <View style={ styles.userSeacrh}>
                    <View style={{flexDirection : 'row',alignItems :'center'}}>
                       <Image style={styles.avatar} source={nullAvatar} />
                       <Text style={{marginLeft : 7}} >{searchUser.name}</Text>

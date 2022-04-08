@@ -39,10 +39,10 @@ export default function Register({navigation}) {
         </View>
         <View style={styles.form}>
              <View style={styles.inputEmail}>
-                <TextInput style={styles.input} placeholder='Số điện thoại' onChangeText={(value) => setUser({...user, _id : value})}   />
+                <TextInput style={styles.input} keyboardType='numeric' placeholder='Số điện thoại' onChangeText={(value) => {setUser({...user, _id : value});/[^0-9]/.test(value)?alert('Vui lòng chỉ nhập số!'):" "} }  />
              </View>
              <View style={styles.inputEmail}>
-                <TextInput style={styles.input} placeholder='Tên' onChangeText={(value) => setUser({...user,name : value})}  />
+                <TextInput style={styles.input} placeholder='Tên'  onChangeText={(value) => setUser({...user,name : value})}  />
              </View>
              
         </View>
