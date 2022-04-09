@@ -20,7 +20,7 @@ export default function Friend(props){
         }else{
           console.log("Get Friend failed");
         }
-    }, [props.messages])
+    }, [])
     useEffect(async () => {
         const q = query(messagesRef , where("idRoom","==" ,props.idRoom))
         const querySnapshot = await getDocs(q);
@@ -48,7 +48,7 @@ export default function Friend(props){
                 <Text style={{fontWeight:"300", fontStyle:"italic"}}>{friend?'('+ friend._id + ')' : ""}</Text>
             </View>
                 <View style={{flexDirection : 'row' , marginLeft : 7 , marginTop : 7}}>
-                    { messages[0].user._id === _idUser ? <Text>Bạn: </Text> : <Text>{friend.name+": "}</Text>}
+                    {friend ? messages[0].user._id === _idUser ? <Text>Bạn: </Text> : <Text>{friend.name+": "}</Text> : null}
                     {messages.length > 0 ? <Text>{messages[0].text}</Text> : null}
                 </View>
         </View>

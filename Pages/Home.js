@@ -27,7 +27,6 @@ export default function Home({navigation,route}){
   useEffect(async () => {
     const unsub = onSnapshot(collection(db, "messages"),async () => {
       getData();
-      console.log("rerender");
       const q = query(messagesRef);
       const querySnapshot = await getDocs(q);
       if(querySnapshot.docs.length > 0 ){
