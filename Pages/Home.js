@@ -1,10 +1,10 @@
 import {useState , useEffect} from 'react';
-import { StyleSheet, Text, View , Image ,Pressable ,FlatList ,TextInput , Button, Dimensions } from 'react-native';
+import { StyleSheet, Text, View , Image ,Pressable ,FlatList ,TextInput , Button, LogBox, Dimensions, Platform, StatusBar  } from 'react-native';
 import nullAvatar from '../Images/null-avatar.png';
 import { db } from '../Firebase';
 import { collection, getDocs , query , where , addDoc , onSnapshot, getDoc} from "firebase/firestore";
 import Friend from '../Components/Friend';
-import Constants from 'expo-constants';
+import { useHeaderHeight } from '@react-navigation/elements';;
 import Icon from 'react-native-vector-icons/Feather';
 
 
@@ -18,6 +18,11 @@ export default function Home({navigation,route}){
   const usersRef = collection(db,"users");
   const messagesRef = collection(db, "messages");
   const user = route.params;
+  LogBox.ignoreLogs(['Setting a timer for a long period of time'])
+
+  const windowHeight = Dimensions.get('window').height;
+
+  const headerHeight = useHeaderHeight();
   
 
 
@@ -95,6 +100,7 @@ export default function Home({navigation,route}){
       });
       return result;
   }
+  console.log(user);
   return(
     <View style={styles.container}>
           <View style={styles.header}>
@@ -115,8 +121,8 @@ export default function Home({navigation,route}){
                       <Image style={styles.avatar} source={nullAvatar} />
                       <Text style={{marginLeft : 7}} >{searchUser.name}</Text>
                   </View>
-                  <Button title='Nhắn tin' onPress={()=>createRoom()}></Button>
-                  <Button title='Xóa' onPress={()=>setSearchUser(null)}></Button>
+                  <Button title='Nhắn tin' style={styles.buttonUserSearch} onPress={()=>createRoom()}></Button>
+                  <Button title='Xóa'  onPress={()=>setSearchUser(null)}></Button>
 
               </View>
               : null
