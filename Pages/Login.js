@@ -82,13 +82,8 @@ const styles = StyleSheet.create({
     inputEmail : {
         width : '100%',
     },
-    inputPass : {
-        width : '100%',
-        marginTop : 15
-    },
     input : {
         width : '100%',
-        marginTop : 10,
         borderWidth : 1,
         padding : 10,
         borderColor : 'white',
@@ -98,13 +93,12 @@ const styles = StyleSheet.create({
     buttonGroup : {
         width : '75%',
         display : 'flex',
-        paddingTop : 15,
         flexDirection : 'column',
         alignItems : 'center'
     },
     buttonAccess : {
         width : '100%',
-        marginTop : 30,
+        marginTop : 10,
         display : 'flex',
         flexDirection : 'column',
         justifyContent : 'space-between'

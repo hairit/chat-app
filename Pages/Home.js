@@ -23,8 +23,6 @@ export default function Home({navigation,route}){
   const windowHeight = Dimensions.get('window').height;
 
   const headerHeight = useHeaderHeight();
-  
-
 
   useEffect(async () => {
     const unsub = onSnapshot(collection(db, "messages"),async () => {
@@ -122,10 +120,10 @@ export default function Home({navigation,route}){
                       <Text style={{marginLeft : 7}} >{searchUser.name}</Text>
                   </View>
                   <View style={{flexDirection : 'row',alignItems : 'center'}}>
-                      <Pressable onPress={()=>createRoom()} style={{ backgroundColor : 'blue',borderRadius :7}}>
+                      <Pressable onPress={()=>createRoom()} style={{ backgroundColor : '#596CE5',borderRadius :7 , padding : 10 , marginRight : 10}}>
                                 <Text style={{color :'#FFFFFF'}}>Nhắn tin</Text>
                       </Pressable>
-                      <Pressable onPress={()=>setSearchUser(null)} style={{ backgroundColor : 'red',borderRadius :7}}>
+                      <Pressable onPress={()=>setSearchUser(null)} style={{ backgroundColor : '#C72016',borderRadius :7 , padding : 10}}>
                                 <Text style={{color :'#FFFFFF'}}>Xóa</Text>
                       </Pressable>
                   </View>
