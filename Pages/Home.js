@@ -26,7 +26,6 @@ export default function Home({navigation,route}){
       getData();
       const q = query(messagesRef);
       const querySnapshot = await getDocs(q);
-      console.log(querySnapshot);
       if(querySnapshot.docs.length > 0 ){
           var arrayMessages = [];
           querySnapshot.docs.forEach((doc) => {
@@ -106,7 +105,7 @@ export default function Home({navigation,route}){
                 <Icon style={styles.logOut} name='log-out' size={35} onPress={()=>navigation.navigate('Login')}></Icon>
           </View>
           <View style={styles.search}>
-              <TextInput style={styles.inputSearch} keyboardType='numeric' placeholder='Tìm bạn bè' onChangeText= {(val) => {setSdt(val); /[^0-9]/.test(value)?alert('Vui lòng chỉ nhập số!'):" "}  }></TextInput>
+              <TextInput style={styles.inputSearch} keyboardType='numeric' placeholder='Tìm bạn bè' onChangeText= {(val) => {setSdt(val); /[^0-9]/.test(val)?alert('Vui lòng chỉ nhập số!'):" "}  }></TextInput>
               <Icon style={styles.iconSearch} size={35} name='search' onPress={()=>searchFriend()}></Icon>
           </View>
           {
