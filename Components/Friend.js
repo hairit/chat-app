@@ -38,7 +38,7 @@ export default function Friend(props) {
         }
     }, [props.messages])
   return(
-    <Pressable style={styles.friend} onPress={()=>props.navigation.navigate('Chat', {idRoom : props.idRoom , user : props.user , navigation : props.navigation , messages : messages } )}>
+    <Pressable style={styles.friend} onPress={()=>props.navigation.navigate('Chat', {idRoom : props.idRoom , user : props.user , navigation : props.navigation } )}>
         <Image style={styles.avatarFriend} source={nullAvatar}/>
         <View style={{ justifyContent : 'center' , flex : 1}}>
             <View style={{display:'flex', flexDirection:'row'}}>
