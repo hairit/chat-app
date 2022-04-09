@@ -2,12 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react'
 import {Button , View} from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 import {db} from '../Firebase'
-import { collection ,where , query , getDocs , addDoc, onSnapshot ,doc } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot} from 'firebase/firestore';
 export function Chat({route}) {
-  const [messages, setMessages] = useState(route.params.messages);
+  const [messages, setMessages] = useState([]);
   const idRoom = route.params.idRoom;
   const user = route.params.user;
-  const navigation = route.params.navigation;
   const messagesRef = collection(db,"messages");
 
   useEffect(() => {
@@ -29,7 +28,6 @@ export function Chat({route}) {
   const onSend = useCallback(async (messages = []) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages)) 
     const {_id,createdAt,text,user} = messages[0];
-    console.log(messages[0]);
     await addDoc(messagesRef, {
         _id  : _id,
         createdAt : createdAt,

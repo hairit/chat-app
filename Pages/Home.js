@@ -29,6 +29,7 @@ export default function Home({navigation,route}){
   useEffect(async () => {
     const unsub = onSnapshot(collection(db, "messages"),async () => {
       getData();
+      console.log("rerender");
       const q = query(messagesRef);
       const querySnapshot = await getDocs(q);
       if(querySnapshot.docs.length > 0 ){
@@ -100,7 +101,6 @@ export default function Home({navigation,route}){
       });
       return result;
   }
-  console.log(user);
   return(
     <View style={styles.container}>
           <View style={styles.header}>
@@ -121,8 +121,14 @@ export default function Home({navigation,route}){
                       <Image style={styles.avatar} source={nullAvatar} />
                       <Text style={{marginLeft : 7}} >{searchUser.name}</Text>
                   </View>
-                  <Button title='Nhắn tin' style={styles.buttonUserSearch} onPress={()=>createRoom()}></Button>
-                  <Button title='Xóa'  onPress={()=>setSearchUser(null)}></Button>
+                  <View style={{flexDirection : 'row',alignItems : 'center'}}>
+                      <Pressable onPress={()=>createRoom()} style={{ backgroundColor : 'blue',borderRadius :7}}>
+                                <Text style={{color :'#FFFFFF'}}>Nhắn tin</Text>
+                      </Pressable>
+                      <Pressable onPress={()=>setSearchUser(null)} style={{ backgroundColor : 'red',borderRadius :7}}>
+                                <Text style={{color :'#FFFFFF'}}>Xóa</Text>
+                      </Pressable>
+                  </View>
 
               </View>
               : null
@@ -131,7 +137,7 @@ export default function Home({navigation,route}){
               <FlatList  
                       data={rooms}
                       renderItem={({item}) =>
-                        checkMessage(item.id) ? <Friend _id={item.users[0] === user._id ? item.users[1] : item.users[0]} navigation={navigation} idRoom={item.id} user={user} messages={messages}/>
+                        checkMessage(item.id) ? <Friend _id={item.users[0] === user._id ? item.users[1] : item.users[0]} _idUser={user._id} navigation={navigation} idRoom={item.id} user={user} messages={messages}/>
                           : null
                       }
                       style={styles.listUser}>
@@ -151,7 +157,6 @@ const styles = StyleSheet.create({
     flexDirection : 'row',
     backgroundColor : '#FFFFFF',
     width : '100%',
-    borderRadius : 10,
     alignItems : 'center',
     justifyContent : 'space-between',
     padding : 20
@@ -173,14 +178,12 @@ const styles = StyleSheet.create({
   listUser : {
     width : '100%',
     backgroundColor : '#FFFFFF',
-    flex : 1 ,
-    borderRadius : 10
+    flex : 1 
   },
   search : {
     margin : 10,
     backgroundColor: '#F8F8FC',
     padding : 15 ,
-    borderRadius :10,
     justifyContent : 'space-between',
     width : '100%',
     flexDirection : 'row',
@@ -198,6 +201,7 @@ const styles = StyleSheet.create({
     margin : 10 ,
     borderRadius : 10 ,
     alignItems : 'center',
+    justifyContent : 'space-between',
     flexDirection : 'row',
     justifyContent : 'space-between',
   },

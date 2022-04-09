@@ -5,9 +5,11 @@ import { db } from '../Firebase'
 import { collection , getDocs , query ,where } from 'firebase/firestore';
 import nullAvatar from '../Images/null-avatar.png'
 
-export default function Friend(props) {
+export default function Friend(props){
     const [friend, setFriend] = useState(null);
     const [messages, setMessages] = useState(props.messages);
+    const _idUser = props._idUser;
+
     const userRef = collection(db , "users");
     const messagesRef = collection(db , "messages");
     useEffect( async () => {
