@@ -8,10 +8,7 @@ import { Chat } from '../Pages/Chat';
 
 const Stack = createNativeStackNavigator();
 
-
 export default function Navigation() {
-
-
 return (
     <NavigationContainer>
         <Stack.Navigator  initialRouteName='Login'>

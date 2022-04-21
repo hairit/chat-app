@@ -1,16 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , Image } from 'react-native';
+import { StyleSheet, Text, View , Image , Platform , StatusBar } from 'react-native';
 import Navigation from './Components/Navigation';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
-
-const Stack = createNativeStackNavigator();
-
 export default function App() {
-
-  return (
+  return(
       <Navigation />
   );
 }
@@ -20,6 +13,7 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center',
     height : '100%',
-    width : '100%'
+    width : '100%',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight:0
   }
 })

@@ -87,7 +87,7 @@ export default function Home({navigation,route}){
       const newRoom = await addDoc(roomsRef, {
         users : [user._id , searchUser._id]
       });
-      navigation.navigate('Chat',{ idRoom : newRoom.id , user : user , navigation : navigation})
+        navigation.navigate('Chat',{ idRoom : newRoom.id , user : user , navigation : navigation})
     }
     setSearchUser(null);
   }
